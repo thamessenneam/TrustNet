@@ -1,0 +1,180 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*"           # triggers on: git tag v1.0.0 && git push --tags
+
+jobs:
+  # ── Build Windows .exe ──────────────────────────────────────────────────────
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller
+
+      - name: Build exe
+        run: |
+          pyinstaller --onefile --noconsole --name trustnet `
+            --hidden-import trustnet.network.node `
+            --hidden-import trustnet.network.ledger `
+            --hidden-import trustnet.network.client `
+            --hidden-import trustnet.network.discovery `
+            --hidden-import trustnet.network.protocol `
+            --hidden-import zeroconf `
+            --hidden-import cryptography.hazmat.primitives.asymmetric.ed25519 `
+            trustnet.py
+
+      - name: Build node daemon
+        run: |
+          pyinstaller --onefile --noconsole --name trustnet-node `
+            --hidden-import trustnet.core `
+            --hidden-import trustnet.network.ledger `
+            --hidden-import trustnet.network.client `
+            --hidden-import trustnet.network.discovery `
+            --hidden-import trustnet.network.protocol `
+            --hidden-import zeroconf `
+            --hidden-import cryptography.hazmat.primitives.asymmetric.ed25519 `
+            trustnet/network/node.py
+
+      - name: Package installer
+        run: |
+          mkdir dist\TrustNet-Windows
+          copy dist\trustnet.exe dist\TrustNet-Windows\
+          copy dist\trustnet-node.exe dist\TrustNet-Windows\
+          copy install\windows\install.py dist\TrustNet-Windows\
+          copy install\windows\uninstall.py dist\TrustNet-Windows\
+          Compress-Archive -Path dist\TrustNet-Windows\* -DestinationPath dist\TrustNet-Windows.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: dist/TrustNet-Windows.zip
+
+  # ── Build macOS binary ──────────────────────────────────────────────────────
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller
+
+      - name: Build binary
+        run: |
+          pyinstaller --onefile --noconsole --name trustnet \
+            --hidden-import trustnet.network.node \
+            --hidden-import trustnet.network.ledger \
+            --hidden-import trustnet.network.client \
+            --hidden-import trustnet.network.discovery \
+            --hidden-import trustnet.network.protocol \
+            --hidden-import zeroconf \
+            --hidden-import cryptography.hazmat.primitives.asymmetric.ed25519 \
+            trustnet.py
+
+      - name: Package
+        run: |
+          mkdir -p dist/TrustNet-macOS
+          cp dist/trustnet dist/TrustNet-macOS/
+          cp install/macos/install.sh dist/TrustNet-macOS/
+          chmod +x dist/TrustNet-macOS/install.sh
+          cd dist && zip -r TrustNet-macOS.zip TrustNet-macOS/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-build
+          path: dist/TrustNet-macOS.zip
+
+  # ── Build Linux binary ──────────────────────────────────────────────────────
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system deps
+        run: sudo apt-get install -y python3-tk
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller
+
+      - name: Build binary
+        run: |
+          pyinstaller --onefile --noconsole --name trustnet \
+            --hidden-import trustnet.network.node \
+            --hidden-import trustnet.network.ledger \
+            --hidden-import trustnet.network.client \
+            --hidden-import trustnet.network.discovery \
+            --hidden-import trustnet.network.protocol \
+            --hidden-import zeroconf \
+            --hidden-import cryptography.hazmat.primitives.asymmetric.ed25519 \
+            trustnet.py
+
+      - name: Package
+        run: |
+          mkdir -p dist/TrustNet-Linux
+          cp dist/trustnet dist/TrustNet-Linux/
+          cp install/linux/install.sh dist/TrustNet-Linux/
+          chmod +x dist/TrustNet-Linux/trustnet dist/TrustNet-Linux/install.sh
+          cd dist && zip -r TrustNet-Linux.zip TrustNet-Linux/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-build
+          path: dist/TrustNet-Linux.zip
+
+  # ── Publish GitHub Release ──────────────────────────────────────────────────
+  release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "TrustNet ${{ github.ref_name }}"
+          body: |
+            ## TrustNet ${{ github.ref_name }}
+
+            Decentralized cryptographic file & package trust network.
+
+            ### Downloads
+            | Platform | File |
+            |---|---|
+            | Windows | `TrustNet-Windows.zip` |
+            | macOS   | `TrustNet-macOS.zip`   |
+            | Linux   | `TrustNet-Linux.zip`   |
+
+            ### Quick Install
+            **Windows:** Download zip, run `install.py` as Administrator
+            **macOS:** Download zip, run `./install.sh`
+            **Linux:** Download zip, run `./install.sh`
+
+            ### Via pip
+            ```
+            pip install trustnet==${{ github.ref_name }}
+            ```
+          files: |
+            artifacts/windows-build/TrustNet-Windows.zip
+            artifacts/macos-build/TrustNet-macOS.zip
+            artifacts/linux-build/TrustNet-Linux.zip
+          draft: false
+          prerelease: false

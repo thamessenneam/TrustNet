@@ -1,0 +1,16 @@
+{
+  "trustnet_version": "1.0.0",
+  "kind": "directory",
+  "directory": "test_package",
+  "root_hash": "715cb825a756532552031b2432cc4084c5360100d417f417dac758e09a022efd",
+  "hash_algorithm": "sha256",
+  "file_count": 3,
+  "files": {
+    "README.txt": "49477d5ad26bdc87b93eac4a749f43299a742a2e982103c83eec935456b43d66",
+    "src/main.py": "957e13c0732e48fd5496f935894dc93a9da7dcd5eb8ffea52646fdf178cda1d1",
+    "src/utils.py": "45b682f486d5bc8d835f79865591c79d034b1ad0e281e74ab3aadf9e268fffa6"
+  },
+  "signature": "8JsosG/V0QsXRwgsJrmhrzE+Yqn4CMlCLUhNC7K3bcmj0xJYPrYFcg/5hNwUHffsmQ4n6Vrt9NSMCx0eslcADA==",
+  "public_key": "Mx1oYRO7I3m9C66chAkL6BYydppGyvpzFM16tp2BpvI=",
+  "timestamp": 1780737267
+}

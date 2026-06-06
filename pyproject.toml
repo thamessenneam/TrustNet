@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "trustnet"
+version = "1.0.0"
+description = "Decentralized cryptographic file & package trust network"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+keywords = ["security", "cryptography", "trust", "p2p", "signing", "verification"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security :: Cryptography",
+    "Topic :: System :: Networking",
+]
+dependencies = [
+    "cryptography>=41.0.0",
+    "Pillow>=10.0.0",
+    "zeroconf>=0.131.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/YOUR_USERNAME/trustnet"
+Issues   = "https://github.com/YOUR_USERNAME/trustnet/issues"
+
+[project.scripts]
+trustnet = "trustnet:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["trustnet*"]
+
+[tool.setuptools.package-data]
+"trustnet.assets" = ["*"]

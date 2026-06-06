@@ -1,0 +1,10 @@
+{
+  "trustnet_version": "1.0.0",
+  "kind": "file",
+  "file": "test_A.txt",
+  "hash": "e7690fc45b9c146af93bed5ca3ee93958b81698e844792aa829ce17c8e80b679",
+  "hash_algorithm": "sha256",
+  "signature": "RTn1dIpEkiK2RcS2HMhXcLCvLHoiIRLNmAJs+pVED9jzedda3yFc9MH2iHpvWmxTjBagyK80TNfO5eBzy4R+AQ==",
+  "public_key": "jnHyeOtVACJwpZQy+OoioLJ7ekMPANetrkKbKm1p9EA=",
+  "timestamp": 1780757894
+}

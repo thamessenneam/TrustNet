@@ -1,0 +1,10 @@
+{
+  "trustnet_version": "1.0.0",
+  "kind": "file",
+  "file": "suite_test.txt",
+  "hash": "1b0b39118120b0163f980f87a04aeeb8a699ac9e72d7ea6ed7f7a5899f88a981",
+  "hash_algorithm": "sha256",
+  "signature": "1L17gc+IpRqIaRYgcnxDPG0eYr1RLBpVEoHbxwVlxb5vYjtpjs+rVM9tV6n4wKhPQbt+ytoRqDM7wKzDVLe0BQ==",
+  "public_key": "jnHyeOtVACJwpZQy+OoioLJ7ekMPANetrkKbKm1p9EA=",
+  "timestamp": 1780758535
+}

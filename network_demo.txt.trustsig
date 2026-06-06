@@ -1,0 +1,10 @@
+{
+  "trustnet_version": "1.0.0",
+  "kind": "file",
+  "file": "network_demo.txt",
+  "hash": "5d01fc3c146c6cf45997c597ab51a20f0f95bbc3c536fb71b1f445be671fbbea",
+  "hash_algorithm": "sha256",
+  "signature": "FlZWNqpvBgVQifsLj/5ewiUhyeFnlU9QhPvVxZcDvsE6SZzQCuPApBAFRDviZftBDEvgR70tAPEvtPE/pzqxBg==",
+  "public_key": "jnHyeOtVACJwpZQy+OoioLJ7ekMPANetrkKbKm1p9EA=",
+  "timestamp": 1780757719
+}

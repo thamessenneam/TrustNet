@@ -30,8 +30,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Thames-Senneam/trustnet"
-Issues   = "https://github.com/Thames-Senneam/trustnet/issues"
+Homepage = "https://github.com/thamessenneam/trustnet"
+Issues   = "https://github.com/thamessenneam/trustnet/issues"
 
 [project.scripts]
 trustnet = "trustnet:main"

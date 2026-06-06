@@ -8,6 +8,8 @@ Or control via CLI:
     trustnet node start / stop / status / peers / add <host>
 """
 
+from __future__ import annotations
+
 import json
 import os
 import sys

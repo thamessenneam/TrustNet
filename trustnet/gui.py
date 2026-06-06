@@ -1,5 +1,7 @@
 """Tkinter dialogs for TrustNet."""
 
+from __future__ import annotations
+
 import sys
 import time
 import tkinter as tk

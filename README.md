@@ -10,9 +10,9 @@ Sign any file or folder. Share it. Anyone can verify it hasn't been tampered wit
 
 | Platform | Download |
 |---|---|
-| Windows | [TrustNet-Windows.zip](https://github.com/YOUR_USERNAME/trustnet/releases/latest) |
-| macOS   | [TrustNet-macOS.zip](https://github.com/YOUR_USERNAME/trustnet/releases/latest)   |
-| Linux   | [TrustNet-Linux.zip](https://github.com/YOUR_USERNAME/trustnet/releases/latest)   |
+| Windows | [TrustNet-Windows.zip](https://github.com/Thames-Senneam/trustnet/releases/latest) |
+| macOS   | [TrustNet-macOS.zip](https://github.com/Thames-Senneam/trustnet/releases/latest)   |
+| Linux   | [TrustNet-Linux.zip](https://github.com/Thames-Senneam/trustnet/releases/latest)   |
 
 Or install via pip:
 ```bash

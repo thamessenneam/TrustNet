@@ -1,0 +1,53 @@
+Windows Registry Editor Version 5.00
+
+; ── Remove old flat entries ───────────────────────────────
+[-HKEY_CLASSES_ROOT\*\shell\TrustNet - Sign]
+[-HKEY_CLASSES_ROOT\*\shell\TrustNet - Verify]
+[-HKEY_CLASSES_ROOT\Directory\shell\TrustNet - Sign]
+[-HKEY_CLASSES_ROOT\Directory\shell\TrustNet - Verify]
+[-HKEY_CLASSES_ROOT\*\shell\TrustNet]
+[-HKEY_CLASSES_ROOT\Directory\shell\TrustNet]
+
+; ── Files: parent menu ───────────────────────────────────
+[HKEY_CLASSES_ROOT\*\shell\TrustNet]
+"MUIVerb"="TrustNet"
+"Icon"="shell32.dll,2"
+"SubCommands"=""
+
+; ── Files: Sign ──────────────────────────────────────────
+[HKEY_CLASSES_ROOT\*\shell\TrustNet\shell\01sign]
+"MUIVerb"="Sign File"
+"Icon"="shell32.dll,2"
+
+[HKEY_CLASSES_ROOT\*\shell\TrustNet\shell\01sign\command]
+@="\"C:\\Users\\PC\\AppData\\Local\\Python\\pythoncore-3.14-64\\pythonw.exe\" \"C:\\Users\\PC\\Desktop\\TrustNet\\trustnet.py\" sign \"%1\""
+
+; ── Files: Verify ────────────────────────────────────────
+[HKEY_CLASSES_ROOT\*\shell\TrustNet\shell\02verify]
+"MUIVerb"="Verify File"
+"Icon"="shell32.dll,104"
+
+[HKEY_CLASSES_ROOT\*\shell\TrustNet\shell\02verify\command]
+@="\"C:\\Users\\PC\\AppData\\Local\\Python\\pythoncore-3.14-64\\pythonw.exe\" \"C:\\Users\\PC\\Desktop\\TrustNet\\trustnet.py\" verify \"%1\""
+
+; ── Folders: parent menu ─────────────────────────────────
+[HKEY_CLASSES_ROOT\Directory\shell\TrustNet]
+"MUIVerb"="TrustNet"
+"Icon"="shell32.dll,2"
+"SubCommands"=""
+
+; ── Folders: Sign ────────────────────────────────────────
+[HKEY_CLASSES_ROOT\Directory\shell\TrustNet\shell\01sign]
+"MUIVerb"="Sign Folder"
+"Icon"="shell32.dll,2"
+
+[HKEY_CLASSES_ROOT\Directory\shell\TrustNet\shell\01sign\command]
+@="\"C:\\Users\\PC\\AppData\\Local\\Python\\pythoncore-3.14-64\\pythonw.exe\" \"C:\\Users\\PC\\Desktop\\TrustNet\\trustnet.py\" sign \"%1\""
+
+; ── Folders: Verify ──────────────────────────────────────
+[HKEY_CLASSES_ROOT\Directory\shell\TrustNet\shell\02verify]
+"MUIVerb"="Verify Folder"
+"Icon"="shell32.dll,104"
+
+[HKEY_CLASSES_ROOT\Directory\shell\TrustNet\shell\02verify\command]
+@="\"C:\\Users\\PC\\AppData\\Local\\Python\\pythoncore-3.14-64\\pythonw.exe\" \"C:\\Users\\PC\\Desktop\\TrustNet\\trustnet.py\" verify \"%1\""

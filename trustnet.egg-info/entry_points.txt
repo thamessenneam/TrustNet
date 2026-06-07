@@ -1,0 +1,2 @@
+[console_scripts]
+trustnet = trustnet:main

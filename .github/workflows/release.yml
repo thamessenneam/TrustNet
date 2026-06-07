@@ -36,7 +36,6 @@ jobs:
 
       - name: Build installer
         run: |
-          New-Item -ItemType Directory -Force -Path dist\installer | Out-Null
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" install\windows\trustnet_setup.iss
         shell: pwsh
 

@@ -17,8 +17,8 @@ AppUpdatesURL={#AppURL}/releases
 DefaultDirName={autopf}\{#AppName}
 DefaultGroupName={#AppName}
 AllowNoIcons=yes
-LicenseFile=LICENSE.txt
-OutputDir=dist\installer
+LicenseFile={#SourcePath}\..\..\LICENSE.txt
+OutputDir={#SourcePath}\..\..\dist\installer
 OutputBaseFilename=TrustNet-Setup
 SetupIconFile=
 Compression=lzma2/ultra64
@@ -44,9 +44,8 @@ Name: "startnode";      Description: "Start TrustNet node automatically at login
 Name: "contextmenu";    Description: "Add TrustNet to right-click menu";  GroupDescription: "Integration:"; Flags: checked
 
 [Files]
-Source: "dist\trustnet.exe";      DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\trustnet-node.exe"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{src}\dist\trustnet-node.exe'))
-Source: "LICENSE.txt";            DestDir: "{app}"; Flags: ignoreversion isreadme
+Source: "{#SourcePath}\..\..\dist\trustnet.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\..\..\LICENSE.txt";       DestDir: "{app}"; Flags: ignoreversion isreadme
 
 [Icons]
 Name: "{group}\TrustNet";             Filename: "{app}\{#AppExe}"

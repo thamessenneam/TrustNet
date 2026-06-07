@@ -8,13 +8,15 @@ Sign any file or folder. Share it. Anyone can verify it hasn't been tampered wit
 
 ## Download
 
-| Platform | Download |
-|---|---|
-| Windows | [TrustNet-Windows.zip](https://github.com/thamessenneam/trustnet/releases/latest) |
-| macOS   | [TrustNet-macOS.zip](https://github.com/thamessenneam/trustnet/releases/latest)   |
-| Linux   | [TrustNet-Linux.zip](https://github.com/thamessenneam/trustnet/releases/latest)   |
+| Platform | Installer | Instructions |
+|---|---|---|
+| Windows | [TrustNet-Setup.exe](https://github.com/thamessenneam/TrustNet/releases/latest) | Double-click → Next → Install |
+| macOS   | [TrustNet-1.0.0.pkg](https://github.com/thamessenneam/TrustNet/releases/latest) | Double-click → Continue → Install |
+| Linux   | [trustnet_1.0.0_amd64.deb](https://github.com/thamessenneam/TrustNet/releases/latest) | `sudo dpkg -i trustnet_1.0.0_amd64.deb` |
 
-Or install via pip:
+No Python required. The installer handles everything automatically.
+
+Or install via pip (developers):
 ```bash
 pip install trustnet
 ```

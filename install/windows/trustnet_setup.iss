@@ -40,8 +40,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon";    Description: "Create a &desktop shortcut";        GroupDescription: "Additional icons:"
-Name: "startnode";      Description: "Start TrustNet node automatically at login"; GroupDescription: "Network:"; Flags: checked
-Name: "contextmenu";    Description: "Add TrustNet to right-click menu";  GroupDescription: "Integration:"; Flags: checked
+Name: "startnode";      Description: "Start TrustNet node automatically at login"; GroupDescription: "Network:"
+Name: "contextmenu";    Description: "Add TrustNet to right-click menu";  GroupDescription: "Integration:"
 
 [Files]
 Source: "{#SourcePath}\..\..\dist\trustnet.exe"; DestDir: "{app}"; Flags: ignoreversion

@@ -32,7 +32,7 @@ def _try_publish(sign_result: dict) -> None:
             pass
     threading.Thread(target=_bg, daemon=True).start()
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 SIG_EXT = ".trustsig"
 
 

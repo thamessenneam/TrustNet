@@ -20,8 +20,7 @@ AllowNoIcons=yes
 LicenseFile={#SourcePath}\..\..\LICENSE.txt
 OutputDir={#SourcePath}\..\..\dist\installer
 OutputBaseFilename=TrustNet-Setup
-SetupIconFile=
-Compression=lzma2/ultra64
+Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 WizardSizePercent=120
@@ -149,7 +148,7 @@ Filename: "{app}\{#AppExe}"; \
 Filename: "{app}\{#AppExe}"; \
   Parameters: "node start"; \
   StatusMsg: "Starting TrustNet node..."; \
-  Flags: runhidden waituntilterminated nowait; \
+  Flags: runhidden nowait; \
   Tasks: startnode
 
 [UninstallRun]

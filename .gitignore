@@ -1,0 +1,30 @@
+# Build artifacts
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+
+# PyInstaller
+*.spec.bak
+
+# Test files
+test_*.txt
+test_*.txt.trustsig
+net_test.*
+network_demo.*
+diag_test.*
+suite_test.*
+debug_gui.py
+
+# TrustNet signature files (don't commit these)
+*.trustsig
+trustnet.manifest.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

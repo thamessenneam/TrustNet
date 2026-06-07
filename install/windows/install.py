@@ -10,7 +10,13 @@ from pathlib import Path
 
 
 def find_python() -> str:
-    return sys.executable
+    # Use pythonw.exe (no console window) so GUI dialogs appear correctly
+    exe = sys.executable
+    pythonw = exe.replace("python.exe", "pythonw.exe")
+    import os
+    if os.path.exists(pythonw):
+        return pythonw
+    return exe
 
 
 def get_trustnet_script() -> str:

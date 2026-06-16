@@ -31,18 +31,23 @@ jobs:
             --hidden-import cryptography.hazmat.primitives.asymmetric.ed25519 `
             trustnet.py
 
-      - name: Install Inno Setup
-        run: choco install innosetup --yes
-
-      - name: Build installer
+      - name: Build Setup Wizard exe
         run: |
-          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" install\windows\trustnet_setup.iss
-        shell: pwsh
+          pyinstaller --onefile --noconsole --name TrustNet-Setup `
+            --hidden-import trustnet.core `
+            --hidden-import trustnet.network.node `
+            --hidden-import trustnet.network.ledger `
+            --hidden-import trustnet.network.client `
+            --hidden-import trustnet.network.discovery `
+            --hidden-import trustnet.network.protocol `
+            --hidden-import zeroconf `
+            --hidden-import cryptography.hazmat.primitives.asymmetric.ed25519 `
+            setup_wizard.py
 
       - uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: dist/installer/TrustNet-Setup.exe
+          path: dist/TrustNet-Setup.exe
 
   # ── macOS: binary + .pkg installer ────────────────────────────────────────
   build-macos:
@@ -143,7 +148,7 @@ jobs:
 
             | Platform | Installer | What to do |
             |---|---|---|
-            | Windows | `TrustNet-Setup.exe` | Double-click → Next → Install |
+            | Windows | `TrustNet-Setup.exe` | Double-click → follow the wizard |
             | macOS   | `TrustNet-1.0.0.pkg` | Double-click → Continue → Install |
             | Linux   | `trustnet_1.0.0_amd64.deb` | `sudo dpkg -i trustnet_1.0.0_amd64.deb` |
 

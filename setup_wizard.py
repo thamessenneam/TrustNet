@@ -32,7 +32,7 @@ FONT_TITLE  = ("Cascadia Code", 13, "bold")
 FONT_SMALL  = ("Cascadia Code", 9)
 FONT_MONO   = ("Cascadia Code", 9)
 
-WIN_W, WIN_H = 600, 480
+WIN_W, WIN_H = 600, 520
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -119,12 +119,12 @@ class Wizard(tk.Tk):
     # ── Layout skeleton ───────────────────────────────────────────────────────
 
     def _build_header(self) -> None:
-        self._header = tk.Frame(self, bg=SURFACE, height=80)
+        self._header = tk.Frame(self, bg=SURFACE, height=68)
         self._header.pack(fill="x")
         self._header.pack_propagate(False)
 
         left = tk.Frame(self._header, bg=SURFACE)
-        left.pack(side="left", fill="both", expand=True, padx=24, pady=16)
+        left.pack(side="left", fill="both", expand=True, padx=24, pady=10)
 
         self._hdr_title = tk.Label(left, text="", font=FONT_LARGE,
                                    bg=SURFACE, fg=GOLD, anchor="w")
@@ -302,34 +302,40 @@ class Wizard(tk.Tk):
     def _page_done(self) -> tk.Frame:
         f = tk.Frame(self._content, bg=BG)
 
-        tk.Label(f, text="✓", font=("Cascadia Code", 56, "bold"),
-                 bg=BG, fg=GOLD).pack(pady=(32, 0))
+        # Top: checkmark + title side by side to save vertical space
+        top = tk.Frame(f, bg=BG)
+        top.pack(pady=(20, 4))
+        tk.Label(top, text="✓", font=("Cascadia Code", 36, "bold"),
+                 bg=BG, fg=GOLD).pack(side="left", padx=(0, 12))
+        right = tk.Frame(top, bg=BG)
+        right.pack(side="left")
+        tk.Label(right, text="Installation Complete!", font=FONT_LARGE,
+                 bg=BG, fg=WHITE, anchor="w").pack(anchor="w")
+        tk.Label(right, text="TrustNet is ready to use.",
+                 font=FONT_SMALL, bg=BG, fg=SUBTEXT, anchor="w").pack(anchor="w")
 
-        tk.Label(f, text="Installation Complete!", font=FONT_LARGE,
-                 bg=BG, fg=WHITE).pack(pady=(8, 4))
+        tk.Frame(f, bg=BORDER, height=1).pack(fill="x", padx=40, pady=12)
 
-        tk.Label(f, text="TrustNet is ready to use.",
-                 font=FONT, bg=BG, fg=SUBTEXT).pack()
-
-        tk.Frame(f, bg=BORDER, height=1).pack(fill="x", padx=40, pady=24)
+        tk.Label(f, text="Quick commands:", font=FONT_SMALL,
+                 bg=BG, fg=SUBTEXT).pack(padx=48, anchor="w", pady=(0, 6))
 
         cmds = [
-            ("Sign a file",    "trustnet sign   myfile.zip"),
-            ("Verify a file",  "trustnet verify myfile.zip"),
-            ("Start node",     "trustnet node start"),
-            ("Node status",    "trustnet node status"),
+            ("Sign a file",   "trustnet sign   myfile.zip"),
+            ("Verify a file", "trustnet verify myfile.zip"),
+            ("Start node",    "trustnet node start"),
+            ("Node status",   "trustnet node status"),
         ]
         for label, cmd in cmds:
-            row = tk.Frame(f, bg=BG)
-            row.pack(fill="x", padx=48, pady=3)
-            tk.Label(row, text=label, font=FONT_SMALL, bg=BG,
-                     fg=SUBTEXT, width=14, anchor="w").pack(side="left")
-            tk.Label(row, text=cmd, font=FONT_MONO, bg=BG,
-                     fg=GOLD, anchor="w").pack(side="left")
+            row = tk.Frame(f, bg=SURFACE)
+            row.pack(fill="x", padx=40, pady=2)
+            tk.Label(row, text=label, font=FONT_SMALL, bg=SURFACE,
+                     fg=SUBTEXT, width=14, anchor="w").pack(side="left", padx=(12, 4), pady=5)
+            tk.Label(row, text=cmd, font=FONT_MONO, bg=SURFACE,
+                     fg=GOLD, anchor="w").pack(side="left", pady=5)
 
-        tk.Frame(f, bg=BORDER, height=1).pack(fill="x", padx=40, pady=20)
+        tk.Frame(f, bg=BORDER, height=1).pack(fill="x", padx=40, pady=12)
 
-        tk.Label(f, text="Right-click any file to use TrustNet from your file manager.",
+        tk.Label(f, text="Right-click any file to sign or verify from your file manager.",
                  font=FONT_SMALL, bg=BG, fg=SUBTEXT).pack()
 
         return f
